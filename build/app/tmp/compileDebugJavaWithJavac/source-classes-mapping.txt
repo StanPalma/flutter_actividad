@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+app/etps3/flutter_actividad/BuildConfig.java
+ app.etps3.flutter_actividad.BuildConfig
