@@ -5,6 +5,7 @@ import 'package:flutter_actividad/screens/home/widget/food_list.dart';
 import 'package:flutter_actividad/screens/home/widget/food_list_view.dart';
 import 'package:flutter_actividad/screens/home/widget/restaurant_info.dart';
 import 'package:flutter_actividad/widgets/custom_app_bar.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,14 +33,39 @@ class _HomePageState extends State<HomePage> {
             pageController.jumpToPage(index);
           }, restaurant),
           Expanded(
-              child: FoodListView(selected, (int index) {
-            setState(() {
-              selected = index;
-            });
-          },
-          pageController,
-          restaurant,
-          ))
+              child: FoodListView(
+            selected,
+            (int index) {
+              setState(() {
+                selected = index;
+              });
+            },
+            pageController,
+            restaurant,
+          )),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            height: 60,
+            child: SmoothPageIndicator(
+              controller: pageController,
+              count: restaurant.menu.length,
+              effect: CustomizableEffect(
+                  dotDecoration: DotDecoration(
+                    width: 8,
+                    height: 8,
+                    color: Colors.grey.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  activeDotDecoration: DotDecoration(
+                      width: 10,
+                      height: 10,
+                      color: kBackground,
+                      borderRadius: BorderRadius.circular(10),
+                      dotBorder: const DotBorder(
+                          color: kPrimaryColor, padding: 2, width: 2))),
+              onDotClicked: (indexDot) => pageController.jumpToPage(indexDot),
+            ),
+          )
         ],
       ),
     );
