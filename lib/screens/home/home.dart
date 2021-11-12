@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_actividad/constants/colors.dart';
 import 'package:flutter_actividad/models/restaurant.dart';
 import 'package:flutter_actividad/screens/home/widget/food_list.dart';
+import 'package:flutter_actividad/screens/home/widget/food_list_view.dart';
 import 'package:flutter_actividad/screens/home/widget/restaurant_info.dart';
 import 'package:flutter_actividad/widgets/custom_app_bar.dart';
 
@@ -12,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var selected = 0;
+  final pageController = PageController();
   final restaurant = Restaurant.generateRestaurant();
 
   @override
@@ -27,7 +29,17 @@ class _HomePageState extends State<HomePage> {
             setState(() {
               selected = index;
             });
-          }, restaurant)
+            pageController.jumpToPage(index);
+          }, restaurant),
+          Expanded(
+              child: FoodListView(selected, (int index) {
+            setState(() {
+              selected = index;
+            });
+          },
+          pageController,
+          restaurant,
+          ))
         ],
       ),
     );
