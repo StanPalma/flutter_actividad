@@ -13,12 +13,12 @@ class Restaurant {
       this.desc, this.score, this.menu);
 
   static Restaurant generateRestaurant() {
-    return Restaurant('Burger Restarante', '20-30 min', '5Km', 'Restaurante',
-      'assets/images/logo_restaurante.png', 'Rica comida rapida', 4.3, {
+    return Restaurant('Burger Restaurante', '20-30 min', '5Km', 'Restaurante',
+        'assets/images/logo_restaurante.png', 'Rica comida rapida', 4.3, {
       'Recomendado': Food.generateRecommendFoods(),
-      'Popular' : Food.generatePopularFoods(),
-      'Fideos' : [],
-      'Pizza' : [], 
+      'Popular': Food.generatePopularFoods(),
+      'Fideos': [],
+      'Pizza': [],
     });
   }
 }

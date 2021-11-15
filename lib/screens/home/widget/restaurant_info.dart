@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_actividad/constants/colors.dart';
 import 'package:flutter_actividad/models/restaurant.dart';
+import 'package:flutter_actividad/screens/detalle/widget/acerca_de.dart';
 
 class RestaurantInfo extends StatelessWidget {
   final restaurant = Restaurant.generateRestaurant();
@@ -69,9 +70,22 @@ class RestaurantInfo extends StatelessWidget {
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  restaurant.logoUrl,
-                  width: 80,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AcercaDe(),
+                      ),
+                    );
+                  },
+                  child: Hero(
+                    tag: 'acerca',
+                    child: Image.asset(
+                      restaurant.logoUrl,
+                      width: 80,
+                    ),
+                  ),
                 ),
               )
             ],
@@ -97,7 +111,7 @@ class RestaurantInfo extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(width:15),
+                  const SizedBox(width: 15),
                 ],
               )
             ],
