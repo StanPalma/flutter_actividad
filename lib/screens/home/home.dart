@@ -20,54 +20,63 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackground,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomAppBar(Icons.arrow_back_ios_outlined, Icons.search_outlined),
-          RestaurantInfo(),
-          FoodList(selected, (int index) {
-            setState(() {
-              selected = index;
-            });
-            pageController.jumpToPage(index);
-          }, restaurant),
-          Expanded(
-              child: FoodListView(
-            selected,
-            (int index) {
+        backgroundColor: kBackground,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppBar(Icons.arrow_back_ios_outlined, Icons.search_outlined),
+            RestaurantInfo(),
+            FoodList(selected, (int index) {
               setState(() {
                 selected = index;
               });
-            },
-            pageController,
-            restaurant,
-          )),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            height: 60,
-            child: SmoothPageIndicator(
-              controller: pageController,
-              count: restaurant.menu.length,
-              effect: CustomizableEffect(
-                  dotDecoration: DotDecoration(
-                    width: 8,
-                    height: 8,
-                    color: Colors.grey.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  activeDotDecoration: DotDecoration(
-                      width: 10,
-                      height: 10,
-                      color: kBackground,
-                      borderRadius: BorderRadius.circular(10),
-                      dotBorder: const DotBorder(
-                          color: kPrimaryColor, padding: 2, width: 2))),
-              onDotClicked: (indexDot) => pageController.jumpToPage(indexDot),
-            ),
-          )
-        ],
-      ),
-    );
+              pageController.jumpToPage(index);
+            }, restaurant),
+            Expanded(
+                child: FoodListView(
+              selected,
+              (int index) {
+                setState(() {
+                  selected = index;
+                });
+              },
+              pageController,
+              restaurant,
+            )),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              height: 60,
+              child: SmoothPageIndicator(
+                controller: pageController,
+                count: restaurant.menu.length,
+                effect: CustomizableEffect(
+                    dotDecoration: DotDecoration(
+                      width: 8,
+                      height: 8,
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    activeDotDecoration: DotDecoration(
+                        width: 10,
+                        height: 10,
+                        color: kBackground,
+                        borderRadius: BorderRadius.circular(10),
+                        dotBorder: const DotBorder(
+                            color: kPrimaryColor, padding: 2, width: 2))),
+                onDotClicked: (indexDot) => pageController.jumpToPage(indexDot),
+              ),
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: kPrimaryColor,
+          elevation: 2,
+          child: const Icon(
+            Icons.shopping_bag_outlined,
+            color: Colors.black,
+            size: 30,
+          ),
+        ));
   }
 }
